@@ -1,0 +1,88 @@
+
+Creating a Calendar Table
+12
+<p class="MsoNormal"><span style="font-family: Calibri, sans-serif; color: rgb(40, 60, 70); background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">To create a calendar table we use the following</span>:
+<o:p></o:p></p>
+
+<p class="MsoNormal" style="margin-bottom: 0in; line-height: 13.5pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span style="font-family: Calibri, sans-serif;">Calendar = <o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0in; line-height: 13.5pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#3165BB;mso-font-kerning:0pt;mso-ligatures:none">ADDCOLUMNS</span><span style="font-family: Calibri, sans-serif;">(<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0in; line-height: 13.5pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span style="font-family: Calibri, sans-serif;">&nbsp; &nbsp; </span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#3165BB;mso-font-kerning:0pt;mso-ligatures:none">CALENDAR</span><span style="font-family: Calibri, sans-serif;">(</span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#3165BB;mso-font-kerning:0pt;mso-ligatures:none">DATE</span><span style="font-family: Calibri, sans-serif;">(</span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#098658;mso-font-kerning:0pt;mso-ligatures:none">2013</span><span style="font-family: Calibri, sans-serif;">, </span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#098658;mso-font-kerning:0pt;mso-ligatures:none">4</span><span style="font-family: Calibri, sans-serif;">, </span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#098658;mso-font-kerning:0pt;mso-ligatures:none">1</span><span style="font-family: Calibri, sans-serif;">), </span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#3165BB;mso-font-kerning:0pt;mso-ligatures:none">DATE</span><span style="font-family: Calibri, sans-serif;">(</span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#098658;mso-font-kerning:0pt;mso-ligatures:none">2024</span><span style="font-family: Calibri, sans-serif;">, </span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#098658;mso-font-kerning:0pt;mso-ligatures:none">1</span><span style="font-family: Calibri, sans-serif;">, </span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#098658;mso-font-kerning:0pt;mso-ligatures:none">30</span><span style="font-family: Calibri, sans-serif;">)),<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0in; line-height: 13.5pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span style="font-family: Calibri, sans-serif;">&nbsp; &nbsp; </span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#A31515;mso-font-kerning:0pt;mso-ligatures:none">"Year"</span><span style="font-family: Calibri, sans-serif;">, </span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#3165BB;mso-font-kerning:0pt;mso-ligatures:none">YEAR</span><span style="font-family: Calibri, sans-serif;">(</span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#001080;mso-font-kerning:0pt;mso-ligatures:none">[Date]</span><span style="font-family: Calibri, sans-serif;">),<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0in; line-height: 13.5pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span style="font-family: Calibri, sans-serif;">&nbsp; &nbsp; </span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#A31515;mso-font-kerning:0pt;mso-ligatures:none">"Month Number"</span><span style="font-family: Calibri, sans-serif;">, </span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#3165BB;mso-font-kerning:0pt;mso-ligatures:none">MONTH</span><span style="font-family: Calibri, sans-serif;">(</span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#001080;mso-font-kerning:0pt;mso-ligatures:none">[Date]</span><span style="font-family: Calibri, sans-serif;">),<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0in; line-height: 13.5pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span style="font-family: Calibri, sans-serif;">&nbsp; &nbsp; </span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#A31515;mso-font-kerning:0pt;mso-ligatures:none">"Month Name
+Short"</span><span style="font-family: Calibri, sans-serif;">, </span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#3165BB;mso-font-kerning:0pt;mso-ligatures:none">FORMAT</span><span style="font-family: Calibri, sans-serif;">(</span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#001080;mso-font-kerning:0pt;mso-ligatures:none">[Date]</span><span style="font-family: Calibri, sans-serif;">, </span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#A31515;mso-font-kerning:0pt;mso-ligatures:none">"MMM"</span><span style="font-family: Calibri, sans-serif;">),<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0in; line-height: 13.5pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span style="font-family: Calibri, sans-serif;">&nbsp; &nbsp; </span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#A31515;mso-font-kerning:0pt;mso-ligatures:none">"Month Name
+Long"</span><span style="font-family: Calibri, sans-serif;">, </span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#3165BB;mso-font-kerning:0pt;mso-ligatures:none">FORMAT</span><span style="font-family: Calibri, sans-serif;">(</span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#001080;mso-font-kerning:0pt;mso-ligatures:none">[Date]</span><span style="font-family: Calibri, sans-serif;">, </span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#A31515;mso-font-kerning:0pt;mso-ligatures:none">"MMMM"</span><span style="font-family: Calibri, sans-serif;">),<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0in; line-height: 13.5pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span style="font-family: Calibri, sans-serif;">&nbsp; &nbsp; </span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#A31515;mso-font-kerning:0pt;mso-ligatures:none">"Day of Week
+Number"</span><span style="font-family: Calibri, sans-serif;">, </span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#3165BB;mso-font-kerning:0pt;mso-ligatures:none">WEEKDAY</span><span style="font-family: Calibri, sans-serif;">(</span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#001080;mso-font-kerning:0pt;mso-ligatures:none">[Date]</span><span style="font-family: Calibri, sans-serif;">),<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0in; line-height: 13.5pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span style="font-family: Calibri, sans-serif;">&nbsp; &nbsp; </span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#A31515;mso-font-kerning:0pt;mso-ligatures:none">"Day Name
+Short"</span><span style="font-family: Calibri, sans-serif;">, </span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#3165BB;mso-font-kerning:0pt;mso-ligatures:none">FORMAT</span><span style="font-family: Calibri, sans-serif;">(</span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#001080;mso-font-kerning:0pt;mso-ligatures:none">[Date]</span><span style="font-family: Calibri, sans-serif;">, </span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#A31515;mso-font-kerning:0pt;mso-ligatures:none">"ddd"</span><span style="font-family: Calibri, sans-serif;">),<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0in; line-height: 13.5pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span style="font-family: Calibri, sans-serif;">&nbsp; &nbsp; </span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#A31515;mso-font-kerning:0pt;mso-ligatures:none">"Day Name
+Long"</span><span style="font-family: Calibri, sans-serif;">, </span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#3165BB;mso-font-kerning:0pt;mso-ligatures:none">FORMAT</span><span style="font-family: Calibri, sans-serif;">(</span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#001080;mso-font-kerning:0pt;mso-ligatures:none">[Date]</span><span style="font-family: Calibri, sans-serif;">, </span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#A31515;mso-font-kerning:0pt;mso-ligatures:none">"dddd"</span><span style="font-family: Calibri, sans-serif;">),<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0in; line-height: 13.5pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span style="font-family: Calibri, sans-serif;">&nbsp; &nbsp; </span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#A31515;mso-font-kerning:0pt;mso-ligatures:none">"Quarter"</span><span style="font-family: Calibri, sans-serif;">, </span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#3165BB;mso-font-kerning:0pt;mso-ligatures:none">QUARTER</span><span style="font-family: Calibri, sans-serif;">(</span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#001080;mso-font-kerning:0pt;mso-ligatures:none">[Date]</span><span style="font-family: Calibri, sans-serif;">),<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0in; line-height: 13.5pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span style="font-family: Calibri, sans-serif;">&nbsp; &nbsp; </span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#A31515;mso-font-kerning:0pt;mso-ligatures:none">"Week of Year"</span><span style="font-family: Calibri, sans-serif;">, </span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#3165BB;mso-font-kerning:0pt;mso-ligatures:none">WEEKNUM</span><span style="font-family: Calibri, sans-serif;">(</span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#001080;mso-font-kerning:0pt;mso-ligatures:none">[Date]</span><span style="font-family: Calibri, sans-serif;">, </span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#098658;mso-font-kerning:0pt;mso-ligatures:none">2</span><span style="font-family: Calibri, sans-serif;">) </span><span style="font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:green;mso-font-kerning:0pt;mso-ligatures:none">// Adjust the week number
+system as needed</span><span style="font-family: Calibri, sans-serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0in; line-height: 13.5pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span style="font-family: Calibri, sans-serif;">)<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0in; line-height: 13.5pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span style="font-family: Calibri, sans-serif;">&nbsp;</span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0in; line-height: 13.5pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b><span style="font-family: Calibri, sans-serif;">Follow all the Instructions
+in the GIF Below :&nbsp;</span></b></p><p class="MsoNormal" style="margin-bottom: 0in; line-height: 13.5pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><img src="https://app.colaberry.com/uploads/ProjectStepsImages/1502/11/1.gif"><b><span style="font-family: Calibri, sans-serif;"><br></span></b><b><span style="font-size: 9pt; font-family: Consolas;"><o:p></o:p></span></b></p>
+
+<p><a href="https://foresightbi.com.ng/microsoft-power-bi/creating-a-custom-calendar-table-in-power-bi/" target="_blank">Creating a customized calendar</a><br></p>
+
