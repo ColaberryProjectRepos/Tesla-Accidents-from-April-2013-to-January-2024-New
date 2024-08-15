@@ -1,0 +1,536 @@
+
+Creating  DAX Measures Table
+15
+<p class="MsoNormal" align="center" style="text-align:center"><img src = "https://app.colaberry.com/uploads/ProjectStepsImages/1502/15/1.jpg" /><b><br></b></p><p class="MsoNormal" align="center" style="text-align:center"><b>PROJECT DAX
+MEASURES<o:p></o:p></b></p>
+
+<p class="MsoListParagraph" style="text-indent:-.25in;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><b>1.<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-weight: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></b><!--[endif]--><b>%DeathRate =</b> DIVIDE([Dths], [Acc], 0)
+<o:p></o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoListParagraph" style="text-indent:-.25in;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><b>2.<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-weight: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></b><!--[endif]--><b>Acc =</b>
+IF(ISBLANK(COUNTROWS('TeslaAccidents_FinalDataset')), 0,
+COUNTROWS('TeslaAccidents_FinalDataset'))&nbsp;
+<o:p></o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoListParagraph" style="text-indent:-.25in;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><b>3.<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-weight: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></b><!--[endif]--><b>Acc Per Mth =</b> DIVIDE([Acc],
+DISTINCTCOUNT('Calendar'[Month Name Short]), 0) <o:p></o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoListParagraph" style="text-indent:-.25in;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><b>4.<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-weight: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></b><!--[endif]--><b>Acc YoY% =</b>
+IF([LYAccidents]=0,0,DIVIDE(([Acc]-[LYAccidents]),[LYAccidents]))+0<o:p></o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoListParagraph" style="text-indent:-.25in;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><b>5.<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-weight: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></b><!--[endif]--><b>AP Deaths LY = <o:p></o:p></b></p>
+
+<p class="MsoNormal">CALCULATE(<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp; SUMX(<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+'TeslaAccidents_FinalDataset',<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IF(<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ISERROR(VALUE('TeslaAccidents_FinalDataset'[ Verified Tesla Autopilot
+Deaths ])),<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0,<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+VALUE('TeslaAccidents_FinalDataset'[ Verified Tesla Autopilot Deaths ])<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; )<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp; ),<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;
+DATEADD('Calendar'[Date], -1, YEAR)<o:p></o:p></p>
+
+<p class="MsoNormal">)<o:p></o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoListParagraph" style="text-indent:-.25in;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><b>6.<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-weight: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></b><!--[endif]--><b>AP Dths = <o:p></o:p></b></p>
+
+<p class="MsoNormal">CALCULATE(<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp; SUMX(<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+TeslaAccidents_FinalDataset,<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IF(<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ISERROR(VALUE(TeslaAccidents_FinalDataset[ Verified Tesla Autopilot
+Deaths ])),<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0,<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+VALUE(TeslaAccidents_FinalDataset[ Verified Tesla Autopilot Deaths ])<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; )<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp; )<o:p></o:p></p>
+
+<p class="MsoNormal">)<o:p></o:p></p>
+
+<p class="MsoListParagraph" style="text-indent:-.25in;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><b>7.<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-weight: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></b><!--[endif]--><b>AP Dths YoY% = <o:p></o:p></b></p>
+
+<p class="MsoNormal">VAR CurrentPeriodAutopilotDeaths = CALCULATE(<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp; SUMX(<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+'TeslaAccidents_FinalDataset',<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IF(<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ISERROR(VALUE('TeslaAccidents_FinalDataset'[ Verified Tesla Autopilot
+Deaths ])),<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0,<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+VALUE('TeslaAccidents_FinalDataset'[ Verified Tesla Autopilot Deaths ])<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; )<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp; )<o:p></o:p></p>
+
+<p class="MsoNormal">)<o:p></o:p></p>
+
+<p class="MsoNormal">VAR PreviousPeriodAutopilotDeaths = CALCULATE(<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp; SUMX(<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+'TeslaAccidents_FinalDataset',<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IF(<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ISERROR(VALUE('TeslaAccidents_FinalDataset'[ Verified Tesla Autopilot
+Deaths ])),<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0,<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+VALUE('TeslaAccidents_FinalDataset'[ Verified Tesla Autopilot Deaths ])<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; )<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp; ),<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;
+SAMEPERIODLASTYEAR('Calendar'[Date])<o:p></o:p></p>
+
+<p class="MsoNormal">)<o:p></o:p></p>
+
+<p class="MsoNormal">RETURN<o:p></o:p></p>
+
+<p class="MsoNormal">IF(<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;
+ISBLANK(CurrentPeriodAutopilotDeaths) ||
+ISBLANK(PreviousPeriodAutopilotDeaths),<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp; 0,<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;
+DIVIDE(CurrentPeriodAutopilotDeaths - PreviousPeriodAutopilotDeaths,
+PreviousPeriodAutopilotDeaths, 0)<o:p></o:p></p>
+
+<p class="MsoNormal">)&nbsp; <o:p></o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoListParagraph" style="text-indent:-.25in;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><b>8.<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-weight: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></b><!--[endif]--><b>APC =</b> DIVIDE(<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;
+SUM('TeslaAccidents_FinalDataset'[ Autopilot Claimed ]),<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;
+COUNTROWS('TeslaAccidents_FinalDataset')<o:p></o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">)<o:p></o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoListParagraph" style="text-indent:-.25in;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><b>9.<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-weight: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></b><!--[endif]--><b>APDeathsYoY%</b> = IF([AP Deaths LY] = 0,
+0, DIVIDE(([AP Dths] - [AP Deaths LY]), [AP Deaths LY])) + 0&nbsp;&nbsp;&nbsp;&nbsp; <o:p></o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoListParagraph" style="text-indent:-.25in;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><b>10.<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-weight: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;"> </span></b><!--[endif]--><b>Arrow
+Acc YoY% =</b> SWITCH(<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp; TRUE(),<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp; [Acc YoY%] &lt; 0,
+UNICHAR(9662),&nbsp; // Down arrow if AccYoY%
+decreased<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp; [Acc YoY%] &gt; 0,
+UNICHAR(9652),&nbsp; // Up arrow if AccYoY%
+increased<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp; UNICHAR(9666)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Right arrow
+for zero or no change<o:p></o:p></p>
+
+<p class="MsoNormal">)&nbsp; <o:p></o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoListParagraph" style="text-indent:-.25in;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><b>11.<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-weight: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;"> </span></b><!--[endif]-->&nbsp;<b>Arrow Autopilot Dths YoY% =</b> SWITCH(<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp; TRUE(),<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp; [AP Dths
+YoY%]&nbsp; &lt; 0, UNICHAR(9662),&nbsp; // Down arrow if AccYoY% decreased<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp; [AP Dths YoY%]
+&gt; 0, UNICHAR(9652),&nbsp; // Up arrow if
+AccYoY% increased<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp; UNICHAR(9666)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Right arrow
+for zero or no change<o:p></o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">) <b><o:p></o:p></b></p>
+
+<p class="MsoListParagraph" style="text-indent:-.25in;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><b>12.<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-weight: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;"> </span></b><!--[endif]--><b>Arrow
+Dths YoY% =</b> SWITCH(<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp; TRUE(),<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp; [Dths YoY%] &lt;
+0, UNICHAR(9662),&nbsp; // Down arrow if
+AccYoY% decreased<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp; [Dths YoY%] &gt;
+0, UNICHAR(9652),&nbsp; // Up arrow if AccYoY%
+increased<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp; UNICHAR(9666)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Right arrow
+for zero or no change<o:p></o:p></p>
+
+<p class="MsoNormal">) <o:p></o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoListParagraph" style="text-indent:-.25in;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><b>13.<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-weight: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;"> </span></b><!--[endif]--><b>ArrowDeathRate
+=</b> SWITCH(<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp; TRUE(),<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp; [%DeathRate] &lt;
+0, UNICHAR(9662),&nbsp; // Down arrow if
+DeathRatePercentage decreased<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp; [%DeathRate] &gt;
+0, UNICHAR(9652),&nbsp; // Up arrow if
+DeathRatePercentage increased<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp; UNICHAR(9666)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Right arrow
+for zero or no change<o:p></o:p></p>
+
+<p class="MsoNormal">) <o:p></o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoListParagraph" style="text-indent:-.25in;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><b>14.<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-weight: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;"> </span></b><!--[endif]--><b>AverageAccidentsPerYear
+=</b> DIVIDE([Acc], DISTINCTCOUNT('Calendar'[Year]), 0)<o:p></o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoListParagraph" style="text-indent:-.25in;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><b>15.<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-weight: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;"> </span></b><!--[endif]--><b>AverageDeathsPerYear
+=</b> DIVIDE([Dths], DISTINCTCOUNT('Calendar'[Year]), 0)<o:p></o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoListParagraph" style="text-indent:-.25in;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><b>16.<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-weight: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;"> </span></b><!--[endif]--><b>Dths
+=</b> IF(ISBLANK(SUM('TeslaAccidents_FinalDataset'[ Deaths ])), 0,
+SUM('TeslaAccidents_FinalDataset'[ Deaths ])) <o:p></o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoListParagraph" style="text-indent:-.25in;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><b>17.<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-weight: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;"> </span></b><!--[endif]--><b>Dths
+per Mth =</b> DIVIDE([Dths], DISTINCTCOUNT('Calendar'[Month Number]), 0) <o:p></o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoListParagraphCxSpFirst" style="text-indent:-.25in;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><b>18.<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-weight: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;"> </span></b><!--[endif]--><b>Dths
+YoY% =</b> IF([LYDeaths]=0,0,DIVIDE(([Dths]-[LYDeaths]),[LYDeaths]))+0 <o:p></o:p></p>
+
+<p class="MsoListParagraphCxSpLast"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoListParagraph" style="text-indent:-.25in;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><b>19.<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-weight: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;"> </span></b><!--[endif]--><b>LYAccidents
+= <o:p></o:p></b></p>
+
+<p class="MsoNormal">CALCULATE(<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;
+COUNTROWS('TeslaAccidents_FinalDataset'),<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;
+SAMEPERIODLASTYEAR('Calendar'[Date])<o:p></o:p></p>
+
+<p class="MsoNormal">) <o:p></o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoListParagraph" style="text-indent:-.25in;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><b>20.<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-weight: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;"> </span></b><!--[endif]--><b>LYDeaths
+=</b> CALCULATE([Dths], DATEADD('Calendar'[Date], -1, YEAR)) <o:p></o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoListParagraph" style="text-indent:-.25in;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><b>21.<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-weight: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;"> </span></b><!--[endif]--><b>OV
+=</b> DIVIDE(<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;
+SUM('TeslaAccidents_FinalDataset'[ Other vehicle ]),<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;
+COUNTROWS('TeslaAccidents_FinalDataset')<o:p></o:p></p>
+
+<p class="MsoNormal">)<o:p></o:p></p>
+
+<p class="MsoListParagraph" style="text-indent:-.25in;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><b>22.<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-weight: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;"> </span></b><!--[endif]--><b>OV
+Occupants =</b> SUMX('TeslaAccidents_FinalDataset',
+'TeslaAccidents_FinalDataset'[ Other vehicle ]) <o:p></o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoListParagraph" style="text-indent:-.25in;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><b>23.<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-weight: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;"> </span></b><!--[endif]--><b>OV
+Occupants LY = <o:p></o:p></b></p>
+
+<p class="MsoNormal">CALCULATE(<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;
+SUM('TeslaAccidents_FinalDataset'[ Other vehicle ]),<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;
+SAMEPERIODLASTYEAR('Calendar'[Date])<o:p></o:p></p>
+
+<p class="MsoNormal">)<o:p></o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoListParagraph" style="text-indent:-.25in;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><b>24.<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-weight: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;"> </span></b><!--[endif]--><b>OV
+YoY% = <o:p></o:p></b></p>
+
+<p class="MsoNormal">VAR CurrentPeriodSum = SUM('TeslaAccidents_FinalDataset'[
+Other vehicle ])<o:p></o:p></p>
+
+<p class="MsoNormal">VAR PreviousPeriodSum = CALCULATE(<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;
+SUM('TeslaAccidents_FinalDataset'[ Other vehicle ]),<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;
+SAMEPERIODLASTYEAR('Calendar'[Date])<o:p></o:p></p>
+
+<p class="MsoNormal">)<o:p></o:p></p>
+
+<p class="MsoNormal">RETURN<o:p></o:p></p>
+
+<p class="MsoNormal">IF(<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;
+ISBLANK(PreviousPeriodSum),<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp; BLANK(),<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;
+DIVIDE(CurrentPeriodSum - PreviousPeriodSum, PreviousPeriodSum)<o:p></o:p></p>
+
+<p class="MsoNormal">) <o:p></o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoListParagraph" style="text-indent:-.25in;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><b>25.<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-weight: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;"> </span></b><!--[endif]--><b>Tesla
+Occupants =</b> SUMX('TeslaAccidents_FinalDataset',
+'TeslaAccidents_FinalDataset'[ Tesla occupant ]) <o:p></o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoListParagraph" style="text-indent:-.25in;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><b>26.<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-weight: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;"> </span></b><!--[endif]--><b>Tesla
+Occupants LY = <o:p></o:p></b></p>
+
+<p class="MsoNormal">CALCULATE(<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp; SUMX(<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+'TeslaAccidents_FinalDataset',<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+'TeslaAccidents_FinalDataset'[ Tesla occupant ]<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp; ),<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;
+SAMEPERIODLASTYEAR('Calendar'[Date])<o:p></o:p></p>
+
+<p class="MsoNormal">)&nbsp; <o:p></o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoListParagraph" style="text-indent:-.25in;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><b>27.<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-weight: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;"> </span></b><!--[endif]--><b>TeslaOccupantsYoY%
+= <o:p></o:p></b></p>
+
+<p class="MsoNormal">IF(<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp; [Tesla Occupants
+LY]= 0,<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp; 0,<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp; DIVIDE(<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Tesla
+Occupants] - [Tesla Occupants LY], <o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Tesla
+Occupants LY]<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp; )<o:p></o:p></p>
+
+<p class="MsoNormal">)&nbsp;&nbsp; <o:p></o:p></p>
+
+<p class="MsoListParagraph" style="text-indent:-.25in;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><b>28.<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-weight: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;"> </span></b><!--[endif]--><b>TO
+=</b> DIVIDE(<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;
+SUM('TeslaAccidents_FinalDataset'[ Tesla occupant ]),<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;
+COUNTROWS('TeslaAccidents_FinalDataset')<o:p></o:p></p>
+
+<p class="MsoNormal">)&nbsp; <o:p></o:p></p>
+
+<p class="MsoListParagraph" style="text-indent:-.25in;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><b>29.<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-weight: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;"> </span></b><!--[endif]--><b>TO
+YoY% = <o:p></o:p></b></p>
+
+<p class="MsoNormal">VAR CurrentPeriodOccupants =
+SUM('TeslaAccidents_FinalDataset'[ Tesla occupant ])<o:p></o:p></p>
+
+<p class="MsoNormal">VAR PreviousPeriodOccupants = CALCULATE(<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;
+SUM('TeslaAccidents_FinalDataset'[ Tesla occupant ]),<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;
+SAMEPERIODLASTYEAR('Calendar'[Date])<o:p></o:p></p>
+
+<p class="MsoNormal">)<o:p></o:p></p>
+
+<p class="MsoNormal">RETURN<o:p></o:p></p>
+
+<p class="MsoNormal">IF(<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;
+ISBLANK(PreviousPeriodOccupants),<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp; 0, <o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;
+DIVIDE(CurrentPeriodOccupants - PreviousPeriodOccupants,
+PreviousPeriodOccupants, 0)<o:p></o:p></p>
+
+<p class="MsoNormal">)<o:p></o:p></p>
+
+<p class="MsoListParagraph" style="text-indent:-.25in;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><b>30.<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-weight: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;"> </span></b><!--[endif]--><b>YOYAccidentsVar
+= <o:p></o:p></b></p>
+
+<p class="MsoNormal">IF(<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp; CALCULATE([Acc],
+PREVIOUSYEAR('Calendar'[Date])) = 0, <o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp; 0, <o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp; DIVIDE(<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ([Acc] -
+CALCULATE([Acc], PREVIOUSYEAR('Calendar'[Date]))), <o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+CALCULATE([Acc], PREVIOUSYEAR('Calendar'[Date]))<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp; )<o:p></o:p></p>
+
+<p class="MsoNormal">) + 0 <o:p></o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p><p class="MsoNormal"><o:p><b>Follow the below instructions and the GIF for more details:&nbsp;</b></o:p></p><p class="MsoNormal"><o:p><b><br></b></o:p></p><p class="MsoNormal"><b>1. Create a New Table for Measures:<o:p></o:p></b></p><p class="MsoNormal"><b>&nbsp;&nbsp; </b>- Go to the
+`Modeling` tab.<o:p></o:p></p><p class="MsoNormal">&nbsp;&nbsp; - Click on `New
+Table`.<o:p></o:p></p><p class="MsoNormal"><b>2. Enter a Dummy DAX Formula:<o:p></o:p></b></p><p class="MsoNormal">&nbsp;&nbsp; - In the formula
+bar, enter a simple DAX formula to create an empty table. For example<b>:<o:p></o:p></b></p><p class="MsoNormal"><b>&nbsp;&nbsp;&nbsp;&nbsp; MeasuresTable
+= DATATABLE("Name", STRING, {})<o:p></o:p></b></p><p class="MsoNormal"><b>&nbsp;&nbsp; </b>This will
+create an empty table named `MeasuresTable`.<o:p></o:p></p><p class="MsoNormal"><b>3. Create New Measures:<o:p></o:p></b></p><p class="MsoNormal">&nbsp;&nbsp; - Once the
+`MeasuresTable` is created, you can start adding measures to this table.<o:p></o:p></p><p class="MsoNormal">&nbsp;&nbsp; - Go to the
+`Modeling` tab.<o:p></o:p></p><p class="MsoNormal">&nbsp;&nbsp; - Click on `New
+Measure`.<o:p></o:p></p><p class="MsoNormal"><b>4. Define Your Measure:<o:p></o:p></b></p><p class="MsoNormal">&nbsp;&nbsp; - In the formula
+bar, enter your DAX formula for the measure. For example:<o:p></o:p></p><p class="MsoNormal"><b>&nbsp;&nbsp;&nbsp;&nbsp; %DeathRate =
+DIVIDE([Dths], [Acc], 0)</b></p><p class="MsoNormal"><b><o:p><br></o:p></b></p><p class="MsoNormal"><b><o:p><br></o:p></b></p><p class="MsoNormal"><o:p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</o:p><img src = "https://app.colaberry.com/uploads/ProjectStepsImages/1502/15/2.gif" /></p>
+
+<p><a href="https://www.phdata.io/blog/creating-a-measures-table-in-power-bi/" target="_blank">Creating Measures Table in Power BI</a><br></p>
+
