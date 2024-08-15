@@ -1,0 +1,57 @@
+
+Creating Refresh Date Table
+13
+<p class="MsoNormal"><b>1. Create a New Table:<o:p></o:p></b></p>
+
+<p class="MsoNormal">&nbsp;&nbsp; - Go to the
+`Modeling` tab.<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp; - Click on `New
+Table`.<o:p></o:p></p>
+
+<p class="MsoNormal"><b>2. Enter DAX Formula:<o:p></o:p></b></p>
+
+<p class="MsoNormal">&nbsp;&nbsp; - In the formula
+bar, enter the following DAX expression:<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; RefreshDateTable
+= <o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; VAR RefreshDate =
+NOW()<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; RETURN <o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; ADDCOLUMNS(<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+CALENDAR(RefreshDate, RefreshDate), <o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "Refresh
+Date", RefreshDate<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; )<o:p></o:p></p>
+
+<p class="MsoNormal"><b>3</b>. <b>Create a Measure for Refresh Date:</b><o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp; - Go to the
+`Modeling` tab.<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp; - Click on `New
+Measure`.<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp; - <b>Enter the
+following DAX formula in the formula bar:</b><o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; Last Refreshed = <o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;
+MAX(RefreshDateTable[Refresh Date])<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;&nbsp; This measure
+extracts the latest refresh date from your refresh date table. <o:p></o:p></p>
+
+<p class="MsoNormal"><b>Follow the GIF Below for Instructions.</b></p><p class="MsoNormal"><b><o:p><br></o:p></b></p><p class="MsoNormal"><img src="https://app.colaberry.com/uploads/ProjectStepsImages/1502/12/1.gif"><b><o:p><br></o:p></b></p>
+
+<p><a href="https://learn.microsoft.com/en-us/azure/devops/report/powerbi/add-last-refresh-time?view=azure-devops&amp;tabs=private" target="_blank">Showing Last Refreshed Date for your report</a><br></p>
+
